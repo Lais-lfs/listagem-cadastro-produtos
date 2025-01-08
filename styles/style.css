@@ -1,0 +1,85 @@
+:root {
+    --primaria: #4A90E2;
+    --secundaria: #50E3C2;
+    --neutra-escura: #4A4A4A;
+    --neutra-clara: #F4F4F4;
+    --suave: #E3EBF3;
+}
+
+header {
+    padding: 2rem 2rem 1.5rem 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--suave);
+}
+
+h1 {
+    text-align: center;
+}
+
+/* Estilo da tabela com listagem */
+table {
+    width: 70%;
+    border-collapse: collapse;
+    margin: 2rem auto;
+}
+
+table, th, td {
+    border: 1px solid rgb(133, 133, 133);
+}
+
+th, td {
+    padding: 0.65rem;
+}
+
+/* Estilo do formulário de cadastro */
+.container-cadastro {
+    width: 40%;
+    margin: auto;
+    background-color: var(--suave);
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.2);
+}
+
+#formulario-cadastro {
+    display: flex;
+    flex-direction: column;
+    padding: 0 4rem;
+}
+
+input, select, button {
+    border: 1px solid rgb(73, 85, 75);
+    border-radius: 7px;
+}
+
+input, select {
+    height: 42px;
+    padding: 0.6rem;
+}
+
+label {
+    margin: 0.8rem 0 0.2rem 0;
+}
+
+button#realizar-cadastro {
+    width: 60%;
+    margin: 1.5rem auto 0;
+    padding: 0.5rem;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--neutra-clara);
+    background-color: var(--primaria);
+}
+
+button#cadastro {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0.5rem;
+    background-color: var(--secundaria);
+}
+
+option.selecione {
+    color: var(--neutra-escura);
+}

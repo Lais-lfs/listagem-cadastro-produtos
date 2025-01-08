@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Press+Start+2P&display=swap');
+    </style>
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/padrao.css">
+</head>
+
+<body>
+    <header>
+        <a href="">Produtos</a>
+        <button type="button" id="cadastro">Cadastrar novo produto</button>
+    </header>
+    <main>
+        <h1>Listagem de Produtos</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome do Produto
+                        <button type="button" onclick="nomesCrescentes()" id="nome-ascendentes" title="Ordem crescente">-></button>
+                        <button type="button" onclick="nomesDecrescentes()" id="nome-decrescentes" class="ocultar-button" title="Ordem decrescente">-></button>
+                    </th>
+
+                    <th>Valor
+                        <button type="button" onclick="valoresCrescentes()" id="valor-ascendentes" class="ocultar-button" title="Ordem crescente">-></button>
+                        <button type="button" onclick="valoresDecrescentes()" id="valor-decrescentes" title="Ordem decrescente">-></button>
+                    </th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="listagem-produtos">
+                <!-- Listagem dos produtos -->
+
+                <tr>
+                    <td>Garfo</td>
+                    <td>2,00</td>
+                    <td>Editar</td>
+                </tr>
+                <tr>
+                    <td>Garfo</td>
+                    <td>2,00</td>
+                    <td>Editar</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="container-cadastro">
+            <h1>Cadastro de Produto</h1>
+            <form id="formulario-cadastro">
+                <label for="nome">Nome do Produto</label>
+                <input type="text" name="nome" id="nome" required>
+
+                <label for="descricao">Descrição</label>
+                <input type="text" name="descricao" id="descricao" required>
+
+                <label for="valor">Valor</label>
+                <input type="number" name="valor" id="valor" min="0" step="0.01" required>
+
+                <label for="disponibilidade">Disponível para venda:</label>
+                <select id="disponibilidade" required>
+                    <option value="" class="selecione">Selecione uma opção...</option>
+                    <option value=1>Sim</option>
+                    <option value=0>Não</option>
+                </select>
+
+                <button type="submit" id="realizar-cadastro">Cadastrar Produto</button>
+            </form>
+        </div>
+
+
+    </main>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>
