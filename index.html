@@ -8,29 +8,34 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Press+Start+2P&display=swap');
     </style>
-    <link rel="stylesheet" href="./styles/style.css">
-    <link rel="stylesheet" href="./styles/padrao.css">
+    <link rel="stylesheet" href="./assets/styles/style.css">
+    <link rel="stylesheet" href="./assets/styles/padrao.css">
 </head>
 
-<body>
+<body onload="carregarListagem()">
     <header>
         <a href="">Produtos</a>
         <button type="button" id="cadastro">Cadastrar novo produto</button>
     </header>
-    <main>
-        <h1>Listagem de Produtos</h1>
 
+    <main>
+        <!-- Tabela com a listagem de produtos -->
+        <h1>Listagem de Produtos</h1>
         <table>
             <thead>
                 <tr>
                     <th>Nome do Produto
-                        <button type="button" onclick="nomesCrescentes()" id="nome-ascendentes" title="Ordem crescente">-></button>
-                        <button type="button" onclick="nomesDecrescentes()" id="nome-decrescentes" class="ocultar-button" title="Ordem decrescente">-></button>
+                        <button type="button" onclick="nomesCrescentes()" id="nome-ascendentes"
+                            title="Ordem crescente">-></button>
+                        <button type="button" onclick="nomesDecrescentes()" id="nome-decrescentes"
+                            class="ocultar-button" title="Ordem decrescente">-></button>
                     </th>
 
                     <th>Valor
-                        <button type="button" onclick="valoresCrescentes()" id="valor-ascendentes" class="ocultar-button" title="Ordem crescente">-></button>
-                        <button type="button" onclick="valoresDecrescentes()" id="valor-decrescentes" title="Ordem decrescente">-></button>
+                        <button type="button" onclick="valoresCrescentes()" id="valor-ascendentes"
+                            class="ocultar-button" title="Ordem crescente">-></button>
+                        <button type="button" onclick="valoresDecrescentes()" id="valor-decrescentes"
+                            title="Ordem decrescente">-></button>
                     </th>
                     <th>Ações</th>
                 </tr>
@@ -38,19 +43,10 @@
             <tbody id="listagem-produtos">
                 <!-- Listagem dos produtos -->
 
-                <tr>
-                    <td>Garfo</td>
-                    <td>2,00</td>
-                    <td>Editar</td>
-                </tr>
-                <tr>
-                    <td>Garfo</td>
-                    <td>2,00</td>
-                    <td>Editar</td>
-                </tr>
             </tbody>
         </table>
 
+        <!-- Formulário de cadastro de novos produtos -->
         <div class="container-cadastro">
             <h1>Cadastro de Produto</h1>
             <form id="formulario-cadastro">
@@ -74,10 +70,34 @@
             </form>
         </div>
 
+        <!-- Modal de edição de produto -->
+        <section id="modal-edicao" style="display: none;">
+            <span class="fechar-modal" onclick="fecharModal()">&times;</span>
+            <h2>Editar Produto</h2>
+            <form id="formulario-edicao">
+                <label for="editar-nome">Nome do Produto</label>
+                <input type="text" id="editar-nome" required>
 
+                <label for="editar-descricao">Descrição</label>
+                <input type="text" id="editar-descricao" required>
+
+                <label for="editar-valor">Valor</label>
+                <input type="number" id="editar-valor" min="0" step="0.01" required>
+
+                <label for="editar-disponibilidade">Disponível para venda:</label>
+                <select id="editar-disponibilidade" required>
+                    <option value=1>Sim</option>
+                    <option value=0>Não</option>
+                </select>
+
+                <button type="submit" id="realizar-edicao">Salvar Alterações</button>
+            </form>
+        </section>
+
+        <div id="fundo-modal" onclick="fecharModal()" style="display: none;"></div>
     </main>
 
-    <script src="./script.js"></script>
+    <script src="./assets/scripts/script.js"></script>
 </body>
 
 </html>

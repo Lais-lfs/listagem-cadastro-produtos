@@ -18,6 +18,10 @@ h1 {
     text-align: center;
 }
 
+button {
+    cursor: pointer;
+}
+
 /* Estilo da tabela com listagem */
 table {
     width: 70%;
@@ -83,3 +87,53 @@ button#cadastro {
 option.selecione {
     color: var(--neutra-escura);
 }
+
+/* Estilo do modal de edição de produtos */
+#modal-edicao {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 90%;
+    width: 400px;
+    background-color: var(--suave);
+    z-index: 1;
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+#fundo-modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#formulario-edicao {
+    display: flex;
+    flex-direction: column;
+}
+
+button#realizar-edicao {
+    width: 50%;
+    margin: 2rem auto 0;
+    padding: 0.5rem;
+    background-color: var(--primaria);
+    color: var(--neutra-clara);
+    font-weight: 600;
+}
+
+button#realizar-edicao:hover {
+    background-color: #3067a7;
+}
+
+.fechar-modal {
+    font-size: 30px;
+    position: absolute;
+    right: 19px;
+    top: 10px;
+    cursor: pointer;
+}
+
