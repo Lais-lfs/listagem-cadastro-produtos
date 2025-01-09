@@ -48,7 +48,6 @@
             </table>
         </div>
 
-
         <!-- Formulário de cadastro de novos produtos -->
         <div id="container-cadastro" class="hidden">
             <h1>Cadastro de Produto</h1>
@@ -65,8 +64,8 @@
                 <label for="disponibilidade">Disponível para venda:</label>
                 <select id="disponibilidade" required>
                     <option value="" class="selecione">Selecione uma opção...</option>
-                    <option value=1>Sim</option>
-                    <option value=0>Não</option>
+                    <option value= 1>Sim</option>
+                    <option value= 0>Não</option>
                 </select>
 
                 <button type="submit" id="realizar-cadastro">Cadastrar Produto</button>
@@ -74,7 +73,7 @@
         </div>
 
         <!-- Modal de edição de produto -->
-        <section id="modal-edicao" style="display: none;">
+        <section id="modal-edicao" class="hidden">
             <span class="fechar-modal" onclick="fecharModal()">&times;</span>
             <h2>Editar Produto</h2>
             <form id="formulario-edicao">
@@ -89,15 +88,15 @@
 
                 <label for="editar-disponibilidade">Disponível para venda:</label>
                 <select id="editar-disponibilidade" required>
-                    <option value=1>Sim</option>
-                    <option value=0>Não</option>
+                    <option value= 1>Sim</option>
+                    <option value= 0>Não</option>
                 </select>
 
                 <button type="submit" id="realizar-edicao">Salvar Alterações</button>
             </form>
         </section>
 
-        <div id="fundo-modal" onclick="fecharModal()" style="display: none;"></div>
+        <div id="fundo-modal" onclick="fecharModal()" class="hidden"></div>
     </main>
 
     <script src="./assets/scripts/script.js"></script>

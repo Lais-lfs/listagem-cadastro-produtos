@@ -31,9 +31,9 @@ function atualizarListaProdutos() {
 
     // Botões de edição
     const botoesEdicao = document.querySelectorAll(".edicao-button");
-    botoesEdicao.forEach(botoesEdicao => {
-        botoesEdicao.addEventListener("click", function () {
-            const index = botoesEdicao.getAttribute("data-index");
+    botoesEdicao.forEach(botoes => {
+        botoes.addEventListener("click", function () {
+            const index = botoes.getAttribute("data-index");
             abrirModalEdicao(index);
         });
     });
@@ -58,7 +58,7 @@ document.getElementById("formulario-cadastro").addEventListener("submit", functi
     const nome = document.getElementById("nome").value;
     const descricao = document.getElementById("descricao").value;
     const valor = parseFloat(document.getElementById("valor").value);
-    const disponibilidade = Boolean(document.getElementById("disponibilidade").value);
+    const disponibilidade = document.getElementById("disponibilidade").value;
 
     if (localStorage.hasOwnProperty("produtos")) {
         produtos = JSON.parse(localStorage.getItem("produtos"));
@@ -74,6 +74,10 @@ document.getElementById("formulario-cadastro").addEventListener("submit", functi
 
 // Abrir modal de edição de produto
 function abrirModalEdicao(index) {
+
+    document.getElementById("modal-edicao").classList.remove("hidden");
+    document.getElementById("fundo-modal").classList.remove("hidden");
+
     const produtoEscolhido = produtos[index];
 
     document.getElementById("editar-nome").value = produtoEscolhido.nome;
@@ -81,12 +85,31 @@ function abrirModalEdicao(index) {
     document.getElementById("editar-valor").value = produtoEscolhido.valor;
     document.getElementById("editar-disponibilidade").value = produtoEscolhido.disponibilidade;
 
-    document.getElementById("teste-modal").style.display = "flex";
     document.getElementById("formulario-edicao").setAttribute("editar-index", index);
 }
 
 // Fechar modal de edição
 function fecharModal() {
-    document.getElementById("fundo-modal").style.display = "none";
-    document.getElementById("modal-edicao").style.display = "none";
+    document.getElementById("modal-edicao").classList.add("hidden");
+    document.getElementById("fundo-modal").classList.add("hidden");
 }
+
+// Salvar alterações do modal
+document.getElementById("formulario-edicao").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const nome = document.getElementById("editar-nome").value;
+    const descricao = document.getElementById("editar-descricao").value;
+    const valor = parseFloat(document.getElementById("editar-valor").value);
+    const disponibilidade = document.getElementById("editar-disponibilidade").value;
+
+    const editarIndex = document.getElementById("formulario-edicao").getAttribute("editar-index");
+    produtos[editarIndex] = { nome, descricao, valor, disponibilidade};
+    localStorage.setItem("produtos", JSON.stringify(produtos));
+
+    produtos.sort((primeiro, segundo) => primeiro.valor - segundo.valor);
+    
+    atualizarListaProdutos();
+    
+    fecharModal()
+})
