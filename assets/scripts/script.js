@@ -39,6 +39,18 @@ function atualizarListaProdutos() {
     });
 }
 
+// Abrir formulário de cadastro
+function abrirCadastro() {
+    document.getElementById("container-listagem").classList.add("hidden");
+    document.getElementById("container-cadastro").classList.remove("hidden");
+}
+
+// Fechar formulário de cadastro
+function fecharCadastro() {
+    document.getElementById("container-listagem").classList.remove("hidden");
+    document.getElementById("container-cadastro").classList.add("hidden");
+}
+
 // Formulário de Cadastro
 document.getElementById("formulario-cadastro").addEventListener("submit", function (e) {
     e.preventDefault();
@@ -57,7 +69,7 @@ document.getElementById("formulario-cadastro").addEventListener("submit", functi
     produtos.sort((primeiro, segundo) => primeiro.valor - segundo.valor);
 
     atualizarListaProdutos();
-    // toggleView("list-container");
+    fecharCadastro();
 });
 
 // Abrir modal de edição de produto

@@ -22,6 +22,10 @@ button {
     cursor: pointer;
 }
 
+.hidden {
+    display: none;
+}
+
 /* Estilo da tabela com listagem */
 table {
     width: 70%;
@@ -38,7 +42,7 @@ th, td {
 }
 
 /* Estilo do formulário de cadastro */
-.container-cadastro {
+#container-cadastro {
     width: 40%;
     margin: auto;
     background-color: var(--suave);

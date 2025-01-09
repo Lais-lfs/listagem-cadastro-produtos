@@ -15,39 +15,42 @@
 <body onload="carregarListagem()">
     <header>
         <a href="">Produtos</a>
-        <button type="button" id="cadastro">Cadastrar novo produto</button>
+        <button type="button" id="cadastro" onclick="abrirCadastro()">Cadastrar novo produto</button>
     </header>
 
     <main>
         <!-- Tabela com a listagem de produtos -->
-        <h1>Listagem de Produtos</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>Nome do Produto
-                        <button type="button" onclick="nomesCrescentes()" id="nome-ascendentes"
-                            title="Ordem crescente">-></button>
-                        <button type="button" onclick="nomesDecrescentes()" id="nome-decrescentes"
-                            class="ocultar-button" title="Ordem decrescente">-></button>
-                    </th>
+        <div id="container-listagem">
+            <h1>Listagem de Produtos</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome do Produto
+                            <button type="button" onclick="nomesCrescentes()" id="nome-ascendentes"
+                                title="Ordem crescente">-></button>
+                            <button type="button" onclick="nomesDecrescentes()" id="nome-decrescentes"
+                                class="ocultar-button" title="Ordem decrescente">-></button>
+                        </th>
 
-                    <th>Valor
-                        <button type="button" onclick="valoresCrescentes()" id="valor-ascendentes"
-                            class="ocultar-button" title="Ordem crescente">-></button>
-                        <button type="button" onclick="valoresDecrescentes()" id="valor-decrescentes"
-                            title="Ordem decrescente">-></button>
-                    </th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody id="listagem-produtos">
-                <!-- Listagem dos produtos -->
+                        <th>Valor
+                            <button type="button" onclick="valoresCrescentes()" id="valor-ascendentes"
+                                class="ocultar-button" title="Ordem crescente">-></button>
+                            <button type="button" onclick="valoresDecrescentes()" id="valor-decrescentes"
+                                title="Ordem decrescente">-></button>
+                        </th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="listagem-produtos">
+                    <!-- Listagem dos produtos -->
 
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
+
 
         <!-- Formulário de cadastro de novos produtos -->
-        <div class="container-cadastro">
+        <div id="container-cadastro" class="hidden">
             <h1>Cadastro de Produto</h1>
             <form id="formulario-cadastro">
                 <label for="nome">Nome do Produto</label>
