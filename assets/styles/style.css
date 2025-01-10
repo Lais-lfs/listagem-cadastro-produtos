@@ -1,21 +1,21 @@
 :root {
     --primaria: #4A90E2;
-    --secundaria: #50E3C2;
+    --secundaria: #50e3be;
     --neutra-escura: #4A4A4A;
     --neutra-clara: #F4F4F4;
     --suave: #E3EBF3;
-}
-
-header {
-    padding: 2rem 2rem 1.5rem 2rem;
-    margin-bottom: 2rem;
-    display: flex;
-    justify-content: space-between;
-    background-color: var(--suave);
+    --suave-verde: #d4f0e9;
 }
 
 h1 {
     text-align: center;
+}
+
+a {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 900;
+    color: var(--neutra-escura);
 }
 
 button {
@@ -25,6 +25,53 @@ button {
 .hidden {
     display: none;
 }
+
+footer {
+    background-color: var(--suave-verde);
+    padding: 1.2rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+
+/* Estilização do header */
+header {
+    padding: 2rem 2rem 1.5rem 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--suave);
+}
+
+button#cadastro {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0.5rem;
+    background-color: var(--secundaria);
+}
+
+button#cadastro:hover, button#confirmar-sim:hover {
+    background-color: #4ed1b0;
+}
+
+button#excluir-produtos {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0.5rem;
+    background-color: #e64759;
+    display: flex;
+    align-items: center;
+}
+
+button#excluir-produtos:hover, button#cancelar:hover {
+    background-color: #d4182e;
+}
+
+#excluir-produtos img {
+    width: 20px;
+}
+
 
 /* Estilo da tabela com listagem */
 table {
@@ -40,6 +87,52 @@ table, th, td {
 th, td {
     padding: 0.65rem;
 }
+
+table tr th {
+    background-color: var(--primaria);
+    color: var(--neutra-clara);
+    font-size: 20px;
+}
+
+table tr:hover td, .sort-button:hover {
+    background-color: var(--suave);
+}
+
+.nome, .valor {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#acoes {
+    text-align: left;
+}
+
+.sort-button {
+    border: 1px solid var(--neutra-clara);
+    border-radius: 25px;
+}
+
+.edicao-button {
+    border-radius: 12px;
+    padding: 0.3rem;
+    background-color: var(--suave-verde);
+}
+
+.edicao-button:hover {
+    background-color: var(--secundaria);
+    font-weight: 500;
+}
+
+.estilo-button {
+    display: flex;
+}
+
+div.estilo-button img {
+    width: 30px;
+}
+
 
 /* Estilo do formulário de cadastro */
 #container-cadastro {
@@ -81,15 +174,20 @@ button#realizar-cadastro {
     background-color: var(--primaria);
 }
 
-button#cadastro {
-    font-size: 14px;
-    font-weight: 500;
-    padding: 0.5rem;
-    background-color: var(--secundaria);
-}
-
 option.selecione {
     color: var(--neutra-escura);
+}
+
+.mensagem-sucesso {
+    position: fixed;
+    top: 21%;
+    right: 6%;
+    padding: 1.3rem;
+    border: 1px solid var(--neutra-escura);
+    border-radius: 15px;
+    font-weight: 700;
+    background-color: #52da86;
+    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.2);
 }
 
 /* Estilo do modal de edição de produtos */
@@ -141,3 +239,34 @@ button#realizar-edicao:hover {
     cursor: pointer;
 }
 
+/* Estilização do modal de confirmação */
+#confirmar {
+    width: 50%;
+    padding: 2rem;
+    background-color: var(--suave-verde);
+    border-radius: 10px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+}
+
+.botoes-confirmação {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 1rem;
+}
+#confirmar-sim, #cancelar {
+    padding: 0.5rem;
+    font-weight: 500;
+    border-radius: 17px;
+}
+
+#confirmar-sim {
+    background-color: var(--primaria);
+}
+
+#cancelar {
+    background-color: #e64759;
+}

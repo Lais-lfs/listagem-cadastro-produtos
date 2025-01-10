@@ -7,7 +7,7 @@ function carregarListagem() {
     }
 
     produtos.sort((primeiro, segundo) => primeiro.valor - segundo.valor);
-    
+
     atualizarListaProdutos();
 }
 
@@ -70,7 +70,29 @@ document.getElementById("formulario-cadastro").addEventListener("submit", functi
 
     atualizarListaProdutos();
     fecharCadastro();
+    setTimeout(mensagemSucesso, 100);
+    limparCampos();
 });
+
+// Mensagem de novo produto cadastrado com sucesso
+function mensagemSucesso() {
+    const cadastro = document.getElementById("container-listagem");
+    const alerta = document.createElement("div");
+    alerta.classList.add("sucesso");
+    alerta.innerHTML = `
+    <span class="mensagem-sucesso">Sucesso! Produto cadastrado.</span>`;
+    cadastro.appendChild(alerta);
+
+    setTimeout(() => {
+        document.querySelector(".sucesso").classList.add("hidden");
+    }, 2000);
+}
+
+// Limpar os campos do formulário ao concluir um cadastro
+function limparCampos() {
+    const formulario = document.querySelector("#formulario-cadastro");
+    formulario.reset();
+}
 
 // Abrir modal de edição de produto
 function abrirModalEdicao(index) {
@@ -92,6 +114,7 @@ function abrirModalEdicao(index) {
 function fecharModal() {
     document.getElementById("modal-edicao").classList.add("hidden");
     document.getElementById("fundo-modal").classList.add("hidden");
+    document.getElementById("confirmar").classList.add("hidden");
 }
 
 // Salvar alterações do modal
@@ -104,12 +127,56 @@ document.getElementById("formulario-edicao").addEventListener("submit", function
     const disponibilidade = document.getElementById("editar-disponibilidade").value;
 
     const editarIndex = document.getElementById("formulario-edicao").getAttribute("editar-index");
-    produtos[editarIndex] = { nome, descricao, valor, disponibilidade};
+    produtos[editarIndex] = { nome, descricao, valor, disponibilidade };
     localStorage.setItem("produtos", JSON.stringify(produtos));
 
     produtos.sort((primeiro, segundo) => primeiro.valor - segundo.valor);
-    
+
     atualizarListaProdutos();
-    
+
     fecharModal()
 })
+
+// Organizar a listagem de acordo com nomes ou valores
+function organizar(comando) {
+    if (comando === 1) {
+        produtos.sort((primeiro, segundo) => primeiro.nome.localeCompare(segundo.nome));
+        atualizarListaProdutos();
+
+        document.getElementById("nomes-crescentes").classList.add("hidden");
+        document.getElementById("nomes-decrescentes").classList.remove("hidden");
+
+    } else if (comando === 2) {
+        produtos.sort((primeiro, segundo) => segundo.nome.localeCompare(primeiro.nome));
+        atualizarListaProdutos();
+
+        document.getElementById("nomes-crescentes").classList.remove("hidden");
+        document.getElementById("nomes-decrescentes").classList.add("hidden");
+
+    } else if (comando === 3) {
+        produtos.sort((primeiro, segundo) => primeiro.valor - segundo.valor);
+        atualizarListaProdutos();
+
+        document.getElementById("valores-crescentes").classList.add("hidden");
+        document.getElementById("valores-decrescentes").classList.remove("hidden");
+
+    } else if (comando === 4) {
+        produtos.sort((primeiro, segundo) => segundo.valor - primeiro.valor);
+        atualizarListaProdutos();
+
+        document.getElementById("valores-crescentes").classList.remove("hidden");
+        document.getElementById("valores-decrescentes").classList.add("hidden");
+    }
+}
+
+// Excluir todos os produtos cadastrados
+function excluirProdutos() {
+    document.getElementById("confirmar").classList.remove("hidden");
+    document.getElementById("fundo-modal").classList.remove("hidden");
+}
+
+function confirmarExclusao() {
+    localStorage.removeItem("produtos");
+    alert("Produtos excluídos com sucesso!");
+    window.location.reload();
+}

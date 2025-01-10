@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -10,12 +10,16 @@
     </style>
     <link rel="stylesheet" href="./assets/styles/style.css">
     <link rel="stylesheet" href="./assets/styles/padrao.css">
+    <link rel="shortcut icon" href="./assets/img/inventory.svg" type="image/x-icon">
 </head>
 
 <body onload="carregarListagem()">
     <header>
         <a href="">Produtos</a>
         <button type="button" id="cadastro" onclick="abrirCadastro()">Cadastrar novo produto</button>
+        <button type="button" id="excluir-produtos" onclick="excluirProdutos()">
+            <img src="./assets/img/delete.svg" alt="">
+            Excluir todos produtos</button>
     </header>
 
     <main>
@@ -25,20 +29,48 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Nome do Produto
-                            <button type="button" onclick="nomesCrescentes()" id="nome-ascendentes"
-                                title="Ordem crescente">-></button>
-                            <button type="button" onclick="nomesDecrescentes()" id="nome-decrescentes"
-                                class="ocultar-button" title="Ordem decrescente">-></button>
+                        <th>
+                            <div class="nome">
+                                <h4>Nome do Produto</h4>
+                                <button type="button" onclick="organizar(1)" id="nomes-crescentes"
+                                    title="Organizar em ordem crescente" class="sort-button">
+                                    <div class="estilo-button">
+                                        <img src="./assets/img/south.svg" alt="">
+                                        <img src="./assets/img/abc.svg" alt="">
+                                    </div>
+
+                                </button>
+                                <button type="button" onclick="organizar(2)" id="nomes-decrescentes"
+                                    class="hidden sort-button" title="Organizar em ordem decrescente">
+                                    <div class="estilo-button">
+                                        <img src="./assets/img/north.svg" alt="">
+                                        <img src="./assets/img/abc.svg" alt="">
+                                    </div>
+                                </button>
+                            </div>
                         </th>
 
-                        <th>Valor
-                            <button type="button" onclick="valoresCrescentes()" id="valor-ascendentes"
-                                class="ocultar-button" title="Ordem crescente">-></button>
-                            <button type="button" onclick="valoresDecrescentes()" id="valor-decrescentes"
-                                title="Ordem decrescente">-></button>
+                        <th>
+                            <div class="valor">
+                                <h4>Valor</h4>
+                                <button type="button" onclick="organizar(3)" id="valores-crescentes"
+                                    class="hidden sort-button" title="Organizar em ordem crescente">
+                                    <div class="estilo-button">
+                                        <img src="./assets/img/south.svg" alt="">
+                                        <img src="./assets/img/123.svg" alt="">
+                                    </div>
+                                    
+                                </button>
+                                <button type="button" onclick="organizar(4)" id="valores-decrescentes"
+                                    title="Organizar em ordem decrescente" class="sort-button">
+                                    <div class="estilo-button">
+                                        <img src="./assets/img/north.svg" alt="">
+                                        <img src="./assets/img/123.svg" alt="">
+                                    </div>
+                            </div>
+
                         </th>
-                        <th>Ações</th>
+                        <th id="acoes">Ações</th>
                     </tr>
                 </thead>
                 <tbody id="listagem-produtos">
@@ -64,8 +96,8 @@
                 <label for="disponibilidade">Disponível para venda:</label>
                 <select id="disponibilidade" required>
                     <option value="" class="selecione">Selecione uma opção...</option>
-                    <option value= 1>Sim</option>
-                    <option value= 0>Não</option>
+                    <option value=1>Sim</option>
+                    <option value=0>Não</option>
                 </select>
 
                 <button type="submit" id="realizar-cadastro">Cadastrar Produto</button>
@@ -88,8 +120,8 @@
 
                 <label for="editar-disponibilidade">Disponível para venda:</label>
                 <select id="editar-disponibilidade" required>
-                    <option value= 1>Sim</option>
-                    <option value= 0>Não</option>
+                    <option value=1>Sim</option>
+                    <option value=0>Não</option>
                 </select>
 
                 <button type="submit" id="realizar-edicao">Salvar Alterações</button>
@@ -97,9 +129,22 @@
         </section>
 
         <div id="fundo-modal" onclick="fecharModal()" class="hidden"></div>
+
+        <div id="confirmar" class="hidden">
+            <span class="fechar-modal" onclick="fecharModal()">&times;</span>
+            <span>Você tem certeza que deseja excluir todos os produtos? Esta ação não pode ser desfeita.</span>
+            <div class="botoes-confirmação">
+                <button id="confirmar-sim" onclick="confirmarExclusao()">Sim</button>
+                <button id="cancelar" onclick="fecharModal()">Cancelar</button>
+            </div>
+        </div>
     </main>
 
     <script src="./assets/scripts/script.js"></script>
 </body>
+<footer>
+    <span>Desenvolvido por <a href="https://github.com/Lais-lfs" target="_blank" rel="noopener noreferrer">Laís
+            Lara</a></span>
+</footer>
 
 </html>
