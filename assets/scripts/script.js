@@ -3,12 +3,27 @@ let produtos = new Array();
 // Carregar listagem ao carregar a página
 function carregarListagem() {
     if (localStorage.hasOwnProperty("produtos")) {
+        
         produtos = JSON.parse(localStorage.getItem("produtos"));
+
+        if(produtos.length === 0) {
+            document.getElementById("semProdutos").style.display = "flex";
+            document.getElementById("container-listagem").classList.add("hidden");
+            document.getElementById("excluir-produtos").style.display = "none";
+
+        } else {
+            document.getElementById("semProdutos").style.display = "none";
+            document.getElementById("container-listagem").classList.remove("hidden");
+            document.getElementById("excluir-produtos").style.display = "flex";
+            
+            produtos.sort((primeiro, segundo) => primeiro.valor - segundo.valor);
+            atualizarListaProdutos();
+        }
+    } else {
+        document.getElementById("semProdutos").classList.remove("hidden");
+        document.getElementById("container-listagem").classList.add("hidden");
+        document.getElementById("excluir-produtos").style.display = "none";
     }
-
-    produtos.sort((primeiro, segundo) => primeiro.valor - segundo.valor);
-
-    atualizarListaProdutos();
 }
 
 // Atualizar a tabela com a listagem de produtos
@@ -22,8 +37,9 @@ function atualizarListaProdutos() {
         linhaTabela.innerHTML = `
         <td>${produto.nome}</td>
         <td>${produto.valor.toLocaleString("pt-br", { style: "currency", currency: "BRL" })}</td>
-        <td>
+        <td class="coluna-acoes">
           <button class="edicao-button" data-index="${index}">Editar</button>
+          <button class="excluir-button" data-index="${index}" title="Excluir produto"><img src="./assets/img/delete_red.svg"></button>
         </td>
       `;
         listagem.appendChild(linhaTabela);
@@ -37,10 +53,21 @@ function atualizarListaProdutos() {
             abrirModalEdicao(index);
         });
     });
+
+    // Botões de excluir
+    const botoesExcluir = document.querySelectorAll(".excluir-button");
+    botoesExcluir.forEach(excluir => {
+        excluir.addEventListener("click", function () {
+            const index = excluir.getAttribute("data-index");
+            excluirEscolhido(index);
+        })
+    })
+
 }
 
 // Abrir formulário de cadastro
 function abrirCadastro() {
+    document.getElementById("semProdutos").style.display = "none";
     document.getElementById("container-listagem").classList.add("hidden");
     document.getElementById("container-cadastro").classList.remove("hidden");
 }
@@ -68,6 +95,8 @@ document.getElementById("formulario-cadastro").addEventListener("submit", functi
     localStorage.setItem("produtos", JSON.stringify(produtos));
     produtos.sort((primeiro, segundo) => primeiro.valor - segundo.valor);
 
+    document.getElementById("excluir-produtos").style.display = "flex";
+
     atualizarListaProdutos();
     fecharCadastro();
     setTimeout(mensagemSucesso, 100);
@@ -84,7 +113,7 @@ function mensagemSucesso() {
     cadastro.appendChild(alerta);
 
     setTimeout(() => {
-        document.querySelector(".sucesso").classList.add("hidden");
+        alerta.classList.add("hidden");
     }, 2000);
 }
 
@@ -170,7 +199,7 @@ function organizar(comando) {
 }
 
 // Excluir todos os produtos cadastrados
-function excluirProdutos() {
+function alertaExclusao() {
     document.getElementById("confirmar").classList.remove("hidden");
     document.getElementById("fundo-modal").classList.remove("hidden");
 }
@@ -179,4 +208,16 @@ function confirmarExclusao() {
     localStorage.removeItem("produtos");
     alert("Produtos excluídos com sucesso!");
     window.location.reload();
+}
+
+// Excluir apenas o produto escolhido
+function excluirEscolhido(index) {
+    produtos.splice(index, 1);
+    localStorage.setItem("produtos", JSON.stringify(produtos));
+
+    produtos.sort((primeiro, segundo) => primeiro.valor - segundo.valor);
+    atualizarListaProdutos();
+    alert("Item excluído com sucesso!");
+
+    carregarListagem();
 }

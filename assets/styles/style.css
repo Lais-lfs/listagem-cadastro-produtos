@@ -6,6 +6,9 @@
     --suave: #E3EBF3;
     --suave-verde: #d4f0e9;
 }
+main {
+    min-height: 420px;
+}
 
 h1 {
     text-align: center;
@@ -27,10 +30,17 @@ button {
 }
 
 footer {
+    /* position: absolute;
+    bottom: 0; */
+    width: 100%;
     background-color: var(--suave-verde);
     padding: 1.2rem;
     text-align: center;
     font-weight: 600;
+    
+}
+footer span a{
+    text-decoration: underline;
 }
 
 
@@ -96,6 +106,9 @@ table tr th {
 
 table tr:hover td, .sort-button:hover {
     background-color: var(--suave);
+    .excluir-button {
+        background-color: var(--suave);
+    }
 }
 
 .nome, .valor {
@@ -125,6 +138,17 @@ table tr:hover td, .sort-button:hover {
     font-weight: 500;
 }
 
+.excluir-button {
+    border: none;
+    background-color: var(--neutra-clara);
+}
+
+.coluna-acoes {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
 .estilo-button {
     display: flex;
 }
@@ -137,7 +161,7 @@ div.estilo-button img {
 /* Estilo do formulário de cadastro */
 #container-cadastro {
     width: 40%;
-    margin: auto;
+    margin: 2rem auto;
     background-color: var(--suave);
     border-radius: 10px;
     padding: 2rem;
@@ -269,4 +293,25 @@ button#realizar-edicao:hover {
 
 #cancelar {
     background-color: #e64759;
+}
+
+/* Estilização da tela de quando não há produtos cadastrados */
+#semProdutos {
+    width: 50%;
+    height: 400px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+div#semProdutos img {
+    width: 90px;
+    opacity: 0.7;
+}
+
+div span span {
+    font-weight: 600;
 }
